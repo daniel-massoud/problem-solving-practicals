@@ -17,8 +17,14 @@ def solve(grid, start, goal):
 
     while frontier:
         # Random Search: randomly select and remove a node from the frontier
-        idx = random.randrange(len(frontier))
-        current = frontier.pop(idx)
+        #idx = random.randrange(len(frontier))
+        #current = frontier.pop(idx)
+        
+        # BFS: remove the oldest node (front of the queue... FIFO)
+        current = frontier.pop(0)
+        
+        # DFS: remove the newest node (top of the stack, LIFO)
+        #current = frontier.pop()
         
         expanded += 1
         exploration.append(current)

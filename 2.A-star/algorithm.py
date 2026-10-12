@@ -4,8 +4,28 @@ from heapq import heappop, heappush
 def solve(grid, start, goal):
     # Modify the h function, monitor how the changes affect performance, and discuss the observed results.
     def heuristic(position):
-        return abs(position[0] - goal[0]) + abs(position[1] - goal[1])
+        # MANHATTAN Heuristic Function
+        #return abs(position[0] - goal[0]) + abs(position[1] - goal[1])
+        
+        #Weighted Manhattan = w × Manhattan... with w > 1
+        w = 2
+        dx = abs(position[0] - goal[0])
+        dy = abs(position[1] - goal[1])
+        return w * (dx + dy)
 
+        # ZERO Heuristic function (degenerates to bfs)
+        #return 0 
+    
+        # Euclidean Heuristic
+        # dx = position[0] - goal[0]
+        # dy = position[1] - goal[1]
+        # return (dx**2 + dy**2) ** 0.5
+
+        #Squared Euclidean
+        # dx = position[0] - goal[0]
+        # dy = position[1] - goal[1]
+        # return dx**2 + dy**2
+    
     frontier = [(heuristic(start), 0, start)]
     parent = {start: None}
     cost = {start: 0}
